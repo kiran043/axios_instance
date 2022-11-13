@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import ApiCall from "./ApiCall";
+import axios from "axios";
+import SecondApi from "./SecondApi";
+
+// axios.defaults.baseURL="https://jsonplaceholder.typicode.com/"
+// axios.defaults.headers.common["Authorization"]="Auth Token"
+
+axios.interceptors.request.use((request) => {
+  console.log(request);
+  request.headers.chanelName="Just Test"
+  return request;
+});
+axios.interceptors.response.use((response) => {
+  console.log(response);
+  return response;
+});
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ApiCall />
+      <SecondApi/>
     </div>
   );
 }
